@@ -3,8 +3,8 @@
 ; Writes a diamond pattern of asterisks to stdout.
 ; Diamond size (number of rows and columns) may be specified on command line; 
 ; default size is 21.
-; Diamond size must be an odd number, and a command line value will be modified 
-; if necssary.
+; Diamond size must be an odd number, so an even value on the command line 
+; will be adjusted.
 
 global	_start
 
@@ -90,7 +90,7 @@ _start:
 .oopsie:
         ; report error
         mov 	rax, 1		; system call for write
-	mov	rdi, 1		; file handle for stdout
+	mov	rdi, 2		; file handle for stderr
 	mov	rsi, oopsie_msg	; address of string to write
 	mov	rdx, oopsie_len	; number of bytes to write
 	syscall

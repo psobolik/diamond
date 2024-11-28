@@ -1,6 +1,7 @@
 ; Defines a function to get an integer from the command line.
-; Value is returned in eax, which is only changed if there's a command line argument.
-; Eax is set to 0 if there's an invalid argument.
+; Value is returned in eax, which is only changed if there's a command line 
+; argument. Return value will always be odd.
+; Eax is set to 0 if there's an argument but it's invalid.
 
 global get_size
 
