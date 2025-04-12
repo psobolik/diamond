@@ -1,16 +1,16 @@
 EXE = diamond
-NASMFLAGS = -Wall -felf64 -F dwarf -g
-SOURCES = $(EXE).asm get_size.asm
-OBJECTS = $(SOURCES:.asm=.o)
-LDFLAGS =
+ASMFLAGS = --64 --gdwarf-2 -mintel64 -mmnemonic=intel -msyntax=intel -mnaked-reg
+SOURCES = $(EXE).s get_size.s
+OBJECTS = $(SOURCES:.s=.o)
+LDFLAGS = -e main
 
 all: $(EXE)
 
 $(EXE): $(OBJECTS)
 	ld $(LDFLAGS) $^ -o $@
 
-%.o:%.asm
-	nasm $(NASMFLAGS) $^ -o $@ -l $(*F).lst
+%.o:%.s
+	as $(ASMFLAGS) $^ -o $@
 
 run: $(EXE)
 	./$(EXE)
